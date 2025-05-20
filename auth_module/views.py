@@ -60,3 +60,23 @@ def login_user(request):
 
     return TemplateResponse(request, "login.html",
                             {"message": "ERROR: invalid method was used"})
+
+def restore_passwd(request):
+    if request.method == "POST":
+        uemail = request.POST.get("user-email")
+
+        if uemail == "":
+            return TemplateResponse(request, "restore_password.html",
+                                    {"message": "ERROR: some field were unfilled"})
+
+        user = authenticate(request, username=uemail, password=upass)
+        if user is not None:
+            login(request, user)
+            return redirect("/profile")
+        else:
+            return TemplateResponse(request, "login.html", {
+                "message": "ERROR: invalid email or password"
+            })
+
+    return TemplateResponse(request, "login.html",
+                            {"message": "ERROR: invalid method was used"})

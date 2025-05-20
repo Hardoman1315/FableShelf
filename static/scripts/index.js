@@ -1,5 +1,5 @@
 let index = 0;
-    const images = document.querySelectorAll("#banner-img");
+    const images = document.querySelectorAll(".banner-img");
 
     function showBanner(i) {
         images.forEach((img, idx) => {

@@ -8,62 +8,30 @@
     <title>FableShelf</title>
 </head>
 <body>
-    <div class="content">
-        <div class="menu">
-            <a href="#">
-                <div class="logo">
-                    <img src="{% static 'images/logo.png' %}">
-                </div>
-            </a>
-
-            <div class="buttons">
-                <a href="#">
-                    <div class="btn"><p>Каталог</p></div>
-                </a>
-                <a href="#">
-                    <div class="btn"><p>Авторы</p></div>
-                </a>
-                <a href="#">
-                    <div class="btn"><p>FAQ</p></div>
-                </a>
-            </div>
-
-            <div class="search">
-                <form action="#" method="post" autocomplete="off">
-                    {% csrf_token %}
-                    <input type="text" placeholder="Искать" required>
-                    <input type="submit" value="">
-                </form>
-            </div>
-
-            <div class="buttons">
-                <a href="#">
-                    <div class="btn"><p>Корзина</p></div>
-                </a>
-                <a href="#">
-                    <div class="btn"><p>Профиль</p></div>
-                </a>
-            </div>
-        </div>
+    <div class="content index-page">
+        {% include "parts/menu.html" %}
 
         <div class="banner">
             <div class="btn prev" id="prev"><h1>&lt;</h1></div>
-            {% for entry in banner %}
+                {% for entry in banner %}
                 <img src="{{ entry.image.url }}" alt="{{ entry.title }}"
-                     {% if forloop.first %} style="display:block;" {% else %} style="display:none;" {% endif %}
-                     id="banner-img">
+                     {% if forloop.first %} style="display:block;" {% else %} style="display:none;" {% endif %} class="banner-img">
             {% endfor %}
             <div class="btn next" id="next"><h1>&gt;</h1></div>
         </div>
 
-        <div class="category">
-            <p>Фэнтези</p>
-            {% for entry in fantasy %}
-                <div class="book">
-                    <img src="{{ entry.cover.url }}" alt="{{ entry.title }}">
+        {% for entry in categories %}
+            <div class="category">
+                <p>{{ entry.category.title }}</p>
+                <div class="category-items">
+                    {% for book in entry.books %}
+                        <div class="book">
+                            <img src="{{ book.cover.url }}" alt="{{ book.title }}">
+                        </div>
+                    {% endfor %}
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
 </body>
 <script src="{% static 'scripts/index.js' %}"></script>
