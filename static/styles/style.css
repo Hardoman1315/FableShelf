@@ -1,7 +1,13 @@
-.content .category .category-items, .content .banner .btn, .content .menu .buttons .btn, .content .menu .buttons, .content, a {
+.content .banner .btn, .content .menu .buttons .btn, .content .menu .buttons, .content, a {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.content .category .category-items .book .info, .content .category .category-items {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
 }
 
 .content .menu, .content .auth-suggestion, .column-wrapper, .auth-page {
@@ -58,7 +64,7 @@ p {
 
 .content {
   width: 70%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: rgb(255, 255, 255);
   flex-direction: column;
 }
@@ -117,7 +123,7 @@ p {
 }
 .content .menu {
   width: 98%;
-  height: 8%;
+  height: 8vh;
   padding: 0 1%;
   background-color: rgb(17, 45, 78);
 }
@@ -183,15 +189,11 @@ p {
   scale: 1.1;
 }
 .content .banner {
-  position: absolute;
-  top: 8vh;
-  height: calc(100vh - 43%);
-  width: 70%;
+  position: relative;
+  height: 57vh;
+  width: 100%;
 }
 .content .banner img {
-  position: absolute;
-  top: 0;
-  left: 0;
   object-fit: fill;
   width: 100%;
   height: 100%;
@@ -217,27 +219,46 @@ p {
   top: 50%;
 }
 .content .category {
-  height: 35%;
   width: 100%;
   display: flex;
   flex-direction: column;
+  margin: 0.6vh 0 0 0;
+}
+.content .category h3 {
+  text-indent: 0.3vw;
 }
 .content .category .category-items {
   width: 100%;
   flex-direction: row;
+  margin: 0.3vh 0;
+  position: relative;
+}
+.content .category .category-items .book {
+  height: 100%;
+  width: 26%;
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(210, 210, 210);
+}
+.content .category .category-items .book img {
+  width: 40%;
+  height: 100%;
+  object-fit: fill;
+}
+.content .category .category-items .book .info {
+  width: 60%;
+  flex-direction: column;
+  text-align: center;
+}
+.content .category .category-items .book .info .data {
+  display: flex;
+  flex-direction: column;
+}
+.content .category .category-items .book .info .left-align {
+  align-self: start;
 }
 .content .category p {
   color: rgb(0, 0, 0);
-}
-.content .category .book {
-  height: 100%;
-  width: 22%;
-  scale: 0.7;
-}
-.content .category .book img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
 }
 
 @font-face {

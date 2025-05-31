@@ -22,11 +22,29 @@
 
         {% for entry in categories %}
             <div class="category">
-                <p>{{ entry.category.title }}</p>
+                <h3>{{ entry.category.title }}</h3>
                 <div class="category-items">
                     {% for book in entry.books %}
                         <div class="book">
                             <img src="{{ book.cover.url }}" alt="{{ book.title }}">
+                            <div class="info">
+                                <div class="data">
+                                    <h3>{{ book.title }}</h3>
+                                    <h5>{{ book.author }}</h5>
+                                </div>
+                                <div class="data left-align">
+                                    <p>Страниц: {{ book.pages }}</p>
+                                    <p>Дата выхода: {{ book.release_date }}</p>
+                                </div>
+                                <div class="about">
+                                    <p>Цена: {{ book.price }}</p>
+                                    <a href="#">
+                                        <div class="btn">
+                                            <p>Подробнее</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     {% endfor %}
                 </div>
