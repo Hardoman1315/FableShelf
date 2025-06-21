@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <title>FableShelf</title>
+</head>
+<body>
+    <div class="content">
+        {% include "parts/menu.html" %}
+
+        <h1 class="search-text">Запрос: {{ request }}</h1>
+        {% if not books and not authors %}
+            <div style="flex: 1">
+                <p class="search-text">Похоже, по вашему запросу ничего нет</p>
+            </div>
+        {% elif books and not authors %}
+            <p class="search-text">Книги:</p>
+            <div class="authors-books">
+                {% for book in books %}
+                    {% include "parts/item-card.html" with book=book %}
+                {% endfor %}
+            </div>
+        {% elif not books and authors %}
+            <p class="search-text">Авторы:</p>
+            <div class="authors-cards">
+                {% for author in authors %}
+                    <div class="author-card">
+                        <a href="{% url 'catalogue_module:author_page' author.id %}">
+                            <div class="author-ico">
+                                <img src="{{ author.image.url }}" alt="{{ author.name }}">
+                            </div>
+                            <p>{{ author.name }}</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p class="search-text">Книги:</p>
+            <div class="authors-books">
+                {% for book in books %}
+                    {% include "parts/item-card.html" with book=book %}
+                {% endfor %}
+            </div>
+            <p class="search-text">Авторы:</p>
+            <div class="authors-cards">
+                {% for author in authors %}
+                    <div class="author-card">
+                        <a href="{% url 'catalogue_module:author_page' author.id %}">
+                            <div class="author-ico">
+                                <img src="{{ author.image.url }}" alt="{{ author.name }}">
+                            </div>
+                            <p>{{ author.name }}</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

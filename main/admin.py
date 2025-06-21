@@ -2,6 +2,7 @@ from django.contrib import admin
 from main.models import *
 from auth_module.models import *
 from catalogue_module.models import *
+from review_module.models import *
 
 
 # main module databases
@@ -14,3 +15,8 @@ admin.site.register(CustomUser)
 admin.site.register(Categories)
 admin.site.register(Authors)
 admin.site.register(Books)
+admin.site.register(Cart)
+admin.site.register(History)
+
+# review module databases
+admin.site.register(Reviews)

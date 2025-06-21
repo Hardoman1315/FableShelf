@@ -10,5 +10,6 @@ urlpatterns = [
     path('', views.index_page, name="main"),
     path('profile/', views.profile_page, name="profile"),
     path('auth/', include('auth_module.urls')),
+    path('catalogue/', include('catalogue_module.urls')),
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

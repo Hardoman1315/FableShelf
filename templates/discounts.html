@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <title>FableShelf</title>
+</head>
+<body>
+    <div class="content">
+        {% include "parts/menu.html" %}
+
+        <div class="authors-books">
+            {% for book in books %}
+                {% include "parts/item-card.html" with book=book %}
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

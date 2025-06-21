@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <title>FableShelf</title>
+</head>
+<body>
+    <div class="content">
+        {% include "parts/menu.html" %}
+
+        <div class="catalogue-page">
+            <div class="categories">
+                {% for entry in categories %}
+                    <a href="{% url 'catalogue_module:catalogue' entry.id %}">
+                        <div class="category">
+                            {{ entry.title }}
+                        </div>
+                    </a>
+                {% endfor %}
+            </div>
+
+            <div class="items">
+                {% for item in items %}
+                    {% include "parts/item-card.html" with book=item %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
