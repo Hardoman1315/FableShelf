@@ -1,4 +1,4 @@
-.content .banner .btn, .content .menu .buttons .btn, .content .menu .buttons, .content, a {
+.content .book-data .summary .stock-data .btn, .content .banner .btn, .content .menu .buttons .btn, .content .menu .buttons, .content .profile .user-data .btn, .content, a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -8,6 +8,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.index-page {
+  display: flex;
+  align-self: center;
+  justify-content: flex-start;
 }
 
 * {
@@ -25,6 +31,9 @@ body {
   background-image: url(../images/bg.jpg);
   background-size: cover;
   background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 a {
@@ -49,9 +58,230 @@ p {
 
 .content {
   width: 70%;
-  height: 100vh;
+  min-height: 100vh;
   background-color: rgb(255, 255, 255);
   flex-direction: column;
+}
+.content .profile {
+  flex: 1;
+  width: 70vw;
+  display: flex;
+  flex-direction: row;
+}
+.content .profile .user-data {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  padding: 1vh 0 1vh 1vw;
+}
+.content .profile .user-data .btn {
+  background-color: rgb(17, 45, 78);
+  text-align: center;
+  width: 10vw;
+  height: 3.5vh;
+  border: none;
+  margin: 1vh 7vw;
+  border-radius: 5px;
+}
+.content .profile .user-data .btn p {
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+}
+.content .profile .user-data .btn:hover {
+  background-color: rgb(28, 56, 96);
+}
+.content .profile .user-data form {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin: 1vh 0 0 0;
+}
+.content .profile .user-data label {
+  margin: 1vh 0 0 0;
+}
+.content .profile .user-data input[type=text], .content .profile .user-data input[type=tel], .content .profile .user-data input[type=email], .content .profile .user-data input[type=password] {
+  color: black;
+  height: 3.5vh;
+  width: 100%;
+  text-indent: 0.5vw;
+  border-radius: 5px;
+  background-color: rgb(210, 210, 210);
+  border: none;
+}
+.content .profile .user-data input[type=submit] {
+  background-color: rgb(17, 45, 78);
+  width: 10vw;
+  height: 3.5vh;
+  color: rgb(255, 255, 255);
+  border: none;
+  margin: 1vh 7vw 0 7vw;
+  border-radius: 5px;
+}
+.content .profile .user-data input[type=submit]:hover {
+  background-color: rgb(28, 56, 96);
+}
+.content .profile .order-history {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 50%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1vh 1vh 0 1vw;
+}
+.content .profile .order-history p {
+  align-self: start;
+}
+.content .profile .order-history table {
+  width: auto;
+  align-self: start;
+  margin: 1vh 0 0 0;
+}
+.content .profile .order-history tr, .content .profile .order-history td, .content .profile .order-history table {
+  border: solid rgb(0, 0, 0) 2px;
+  border-collapse: collapse;
+}
+.content .profile .order-history td {
+  text-align: center;
+  padding: 0.6vh 0.3vw;
+  font-size: 16px;
+}
+.content .profile .order-history td:nth-child(1) {
+  width: 3vw;
+}
+.content .profile .order-history td:nth-child(2) {
+  min-width: 7vw;
+  max-width: 12vw;
+}
+.content .profile .order-history td:nth-child(3) {
+  width: 4vw;
+}
+.content .cart {
+  flex: 1;
+  padding: 2vh;
+}
+.content .cart table {
+  width: auto;
+}
+.content .cart tr, .content .cart td, .content .cart table {
+  border: solid rgb(0, 0, 0) 2px;
+  border-collapse: collapse;
+}
+.content .cart td {
+  text-align: center;
+  padding: 0.6vh 0.3vw;
+  font-size: 16px;
+}
+.content .cart td:nth-child(1) {
+  width: 3vw;
+}
+.content .cart td:nth-child(2) {
+  width: 7vw;
+}
+.content .cart td:nth-child(3) {
+  width: 3vw;
+}
+.content .cart td:nth-child(4) {
+  width: 6vw;
+}
+.content .cart td:nth-child(5) {
+  width: 6vw;
+}
+.content .out-of-stock {
+  filter: brightness(30%);
+}
+.content .out-of-stock:hover {
+  filter: none;
+}
+.content .search-text {
+  margin: 0.4vh 0 0 0;
+  align-self: start;
+  padding: 0 0 0 1vw;
+}
+.content .catalogue-page {
+  display: flex;
+  flex-direction: row;
+}
+.content .catalogue-page .items {
+  flex: 1;
+  display: grid;
+  width: 58vw;
+  grid-template-columns: repeat(3, 19vw);
+  grid-auto-rows: 24vh;
+}
+.content .catalogue-page .items .book {
+  transform: scale(0.8);
+  margin: 0 auto;
+}
+.content .categories {
+  width: 12vw;
+  height: 92vh;
+  overflow-x: hidden;
+  overflow-y: auto;
+  border-right: 3px solid rgb(210, 210, 210);
+  padding: 0 0 0 3px;
+}
+.content .categories a {
+  height: auto;
+}
+.content .categories a:nth-of-type(even) {
+  background-color: rgb(210, 210, 210);
+}
+.content .categories .category {
+  width: 100%;
+  height: 4vh;
+  justify-content: center;
+  text-align: left;
+  padding: 0 0 0 1vw;
+}
+.content .authors-books {
+  flex: 1;
+  display: grid;
+  width: 70vw;
+  justify-content: space-between;
+  margin: 1vh 0 0 0;
+  row-gap: 2vh;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: 24vh;
+}
+.content .authors-books .book {
+  margin: 0 auto;
+}
+.content .authors-cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 33vh;
+  row-gap: 2vh;
+  width: 70vw;
+  flex: 1;
+  margin: 2vh 0 0 0;
+  justify-content: space-between;
+}
+.content .authors-cards .author-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 32vh;
+  width: 12vw;
+  text-align: center;
+  margin: auto;
+}
+.content .authors-cards .author-card a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  border: 2px solid rgb(17, 45, 78);
+}
+.content .authors-cards .author-card .author-ico {
+  height: 29vh;
+  width: 12vw;
+}
+.content .authors-cards .author-card .author-ico img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
 }
 .content .auth form {
   display: flex;
@@ -107,8 +337,11 @@ p {
   width: auto;
 }
 .content .menu {
+  position: sticky;
+  z-index: 100;
+  top: 0;
   width: 98%;
-  height: 8%;
+  height: 8vh;
   padding: 0 1%;
   background-color: rgb(17, 45, 78);
 }
@@ -175,14 +408,10 @@ p {
 }
 .content .banner {
   position: relative;
-  height: 57%;
+  height: 57vh;
   width: 100%;
-  background-color: rgba(214, 185, 54, 0.85);
 }
 .content .banner img {
-  position: absolute;
-  top: 0;
-  left: 0;
   object-fit: fill;
   width: 100%;
   height: 100%;
@@ -191,7 +420,7 @@ p {
   position: absolute;
   width: 2vw;
   height: 2vw;
-  z-index: 100;
+  z-index: 99;
   border: solid rgb(0, 0, 0) 1px;
   background-color: rgb(17, 45, 78);
   border-radius: 50%;
@@ -208,27 +437,197 @@ p {
   top: 50%;
 }
 .content .category {
-  height: 35%;
-  width: 100%;
+  width: 140%;
   display: flex;
   flex-direction: column;
+  margin: 0.6vh 0 0 0;
+  align-self: start;
+}
+.content .category h3 {
+  text-indent: 0.3vw;
+}
+.content .category .category-items {
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+  flex-direction: row;
+  margin: 0.3vh 0;
+  position: relative;
+}
+.content .category .category-items .book .hidden-book {
+  opacity: 0;
 }
 .content .category p {
   color: rgb(0, 0, 0);
 }
-.content .category .book {
-  height: 100%;
-  aspect-ratio: 9/16;
+.content .book-cover {
+  margin: 1vw 1vw 0 0;
+  width: 15vw;
+  aspect-ratio: 9/14;
 }
-.content .category .book img {
+.content .book-cover img {
   width: 100%;
   height: 100%;
-  object-fit: fill;
+  object-fit: cover;
+}
+.content .reviews {
+  flex: 1;
+  display: flex;
+  align-self: start;
+  margin: 1vw;
+}
+.content .reviews .review-block {
+  display: flex;
+  flex-direction: column;
+  padding: 1vh 0;
+}
+.content .reviews .review-block .review {
+  border-radius: 5px;
+  margin: 1vh 0.5vw;
+  padding: 0.3vh;
+  border: solid rgb(210, 210, 210) 1px;
+}
+.content .reviews .review-block .review:last-child, .content .reviews .review-block .review:first-child {
+  margin: 0 0.5vw;
+}
+.content .reviews .review-block .review:nth-of-type(2) {
+  background-color: rgb(210, 210, 210);
+}
+.content .reviews .review-block .review .user-data {
+  display: flex;
+  flex-direction: row;
+}
+.content .reviews .review-block .review p, .content .reviews .review-block .review b {
+  font-size: 14px;
+}
+.content .reviews form {
+  display: flex;
+  flex-direction: column;
+}
+.content .reviews form input[type=submit] {
+  margin: 0 0 0 8.5vw;
+  width: 8vw;
+  height: 4vh;
+  background-color: rgb(17, 45, 78);
+  color: rgb(255, 255, 255);
+}
+.content .reviews form input[type=submit]:hover {
+  background-color: rgb(28, 56, 96);
+}
+.content .reviews form input[type=submit]:disabled {
+  background-color: rgb(17, 45, 78);
+  cursor: not-allowed;
+}
+.content .reviews form textarea {
+  width: 16vw;
+  height: 8vh;
+  padding: 0.2vh 0.2vw;
+}
+.content .book-data {
+  display: flex;
+  flex-direction: row;
+  min-height: 50vh;
+  height: auto;
+  width: 100%;
+}
+.content .book-data .summary {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  margin: 0 0 0 1vw;
+}
+.content .book-data .summary .price-tag {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 1vh 0 0 0;
+}
+.content .book-data .summary .price-tag .old-price {
+  text-decoration: line-through;
+  font-size: 10px;
+  align-self: start;
+}
+.content .book-data .summary .stock-data {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.content .book-data .summary .stock-data .btn {
+  margin: 0 0.4vw;
+  width: 7vw;
+  height: 4vh;
+  border-radius: 5px;
+  background-color: rgb(17, 45, 78);
+}
+.content .book-data .summary .stock-data .btn:hover {
+  background-color: rgb(28, 56, 96);
+}
+.content .book-data .summary .stock-data .btn p {
+  color: rgb(255, 255, 255);
+}
+.content .book-data .description {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: auto;
+  padding: 1vw 1vw 0 0;
+}
+.content hr {
+  margin: 0.5vh 0;
+  width: auto;
+  background-color: rgb(210, 210, 210);
 }
 
 @font-face {
   font-family: "Merriweather";
   src: url("../fonts/Merriweather.woff2");
+}
+.book {
+  height: 24vh;
+  width: 20vw;
+  margin: 0 1.5%;
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(210, 210, 210);
+}
+.book img {
+  width: 40%;
+  height: 100%;
+  object-fit: fill;
+}
+.book .info {
+  width: 60%;
+  display: grid;
+  grid-template-rows: auto;
+  align-items: center;
+}
+.book .info p {
+  margin: 0 0 0 0.3vw;
+}
+.book .info p:last-child {
+  margin: 0;
+}
+.book .info .title {
+  font-size: 22px;
+}
+.book .info .author {
+  font-size: 18px;
+}
+.book .info .data {
+  font-size: 16px;
+  display: flex;
+  flex-direction: row;
+}
+.book .info .data .old-price {
+  text-decoration: line-through;
+  font-size: 10px;
+  align-self: start;
+}
+
+@media screen and (max-width: 1366px) and (max-height: 768px) {
+  p {
+    font-size: 16px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

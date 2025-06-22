@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,42 +9,7 @@
 </head>
 <body>
     <div class="content auth-page">
-        <div class="menu">
-            <a href="#">
-                <div class="logo">
-                    <img src="{% static 'images/logo.png' %}">
-                </div>
-            </a>
-
-            <div class="buttons">
-                <a href="#">
-                    <div class="btn"><p>Каталог</p></div>
-                </a>
-                <a href="#">
-                    <div class="btn"><p>Авторы</p></div>
-                </a>
-                <a href="#">
-                    <div class="btn"><p>FAQ</p></div>
-                </a>
-            </div>
-
-            <div class="search">
-                <form action="#" method="post" autocomplete="off">
-                    {% csrf_token %}
-                    <input type="text" placeholder="Искать" required>
-                    <input type="submit" value="">
-                </form>
-            </div>
-
-            <div class="buttons">
-                <a href="#">
-                    <div class="btn"><p>Корзина</p></div>
-                </a>
-                <a href="#">
-                    <div class="btn"><p>Профиль</p></div>
-                </a>
-            </div>
-        </div>
+        {% include "parts/menu.html" %}
 
         <div class="auth">
             <form action="{% url 'auth_module:registr_user' %}" method="post" autocomplete="off">
@@ -73,7 +38,7 @@
 
         <div class="column-wrapper">
             <div class="auth-suggestion">
-                <span>Уже есть аккаунт?</span><a href="#"> Войти</a>
+                <span>Уже есть аккаунт?</span><a href="{% url 'auth_module:login_page' %}"> Войти</a>
             </div>
         </div>
     </div>

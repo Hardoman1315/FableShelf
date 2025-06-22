@@ -1,0 +1,23 @@
+{% load static %}
+
+<div class="book {% if book.stock <= 0 %} out-of-stock {% endif %} ">
+    <img src="{{ book.cover.url }}" alt="{{ book.title }}">
+    <div class="info">
+        <p class="title">{{ book.title }}</p>
+        <p class="author">{{ book.author }}</p>
+        <p class="data">Страниц: {{ book.pages }}</p>
+        <p class="data">Дата выхода: {{ book.release_date|date:"d.m.Y" }}</p>
+        {% if book.discount > 0 %}
+            <p class="data">
+                <span class="old-price">{{ book.price }}</span> {{ book.total_price }} руб.
+            </p>
+        {% else %}
+            <p class="data">{{ book.price }} руб.</p>
+        {% endif %}
+        <a href="{% url 'catalogue_module:book_page' book.id %}">
+            <div class="btn">
+                <p>Подробнее</p>
+            </div>
+        </a>
+    </div>
+</div>

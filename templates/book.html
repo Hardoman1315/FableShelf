@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <title>FableShelf</title>
+</head>
+<body>
+    <div class="content">
+        {% include "parts/menu.html" %}
+
+        <div class="book-data">
+            <div class="summary">
+                <div class="book-cover">
+                    <img src="{{ book.cover.url }}">
+                </div>
+
+                {% if book.discount > 0 %}
+                    <div class="price-tag">
+                        <p class="old-price">{{ book.price }}</p>
+                        <p>{{ book.total_price }}руб.</p>
+                    </div>
+                {% else %}
+                    <div class="price-tag">
+                        <p>{{ book.price }}руб.</p>
+                    </div>
+                {% endif %}
+
+                <div class="stock-data">
+                    {% if book.stock > 0 %}
+                        <p>Осталось: {{ book.stock }}</p>
+                        <a href="{% url 'catalogue_module:add_to_cart' book.id %}">
+                            <div class="btn">
+                                <p>В корзину</p>
+                            </div>
+                        </a>
+                    {% else %}
+                        <p>Товар закончился</p>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="description">
+                <h1>{{ book.title }}</h1>
+                <h3>{{ book.author }}</h3>
+                <br>
+                <p>{{ book.description }}</p>
+                <br>
+                <p>Жанры: {% for entry in book.categories.all %}{{ entry.title }}{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+                <p>Дата издания: {{ book.release_date|date:"d.m.Y" }}</p>
+                <p>Количество страниц: {{ book.pages }}</p>
+            </div>
+        </div>
+
+        <div class="reviews">
+            <form action="{% url 'catalogue_module:add_review' book.id %}" method="post" autocomplete="off">
+                {% csrf_token %}
+                <label for="new_review">Отставить отзыв:</label>
+                <textarea id="new_review" name="new_review" required placeholder="Авторизируйтесь чтобы оставить отзыв"></textarea>
+                {% if user.is_authenticated %}
+                    <input type="submit" value="Отправить">
+                {% else %}
+                    <input type="submit" value="Отправить" disabled>
+                {% endif %}
+            </form>
+
+            <div class="review-block">
+                {% for review in reviews %}
+                    <div class="review">
+                        <div class="user-data">
+                            <b>{{ review.user }}</b>
+                            <p> {{ review.date|date:"d.m.Y" }}</p>
+                        </div>
+                        <p>{{ review.review }}</p>
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

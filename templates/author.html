@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <title>FableShelf</title>
+</head>
+<body>
+    <div class="content">
+        {% include "parts/menu.html" %}
+
+        <!-- todo: rename classes to avoid confusion to smth more neutral -->
+        <div class="book-data">
+            <div class="summary">
+                <div class="book-cover">
+                    <img src="{{ author.image.url }}">
+                </div>
+            </div>
+
+            <div class="description">
+                <h1>{{ author.name }}</h1>
+                <br>
+                <p>{{ author.bio }}</p>
+                <br>
+                {% if author.date_of_birth %}
+                    <p>Дата рождения: {{ author.date_of_birth|date:"d.m.Y" }}</p>
+                {% else %}
+                    <p>Дата рождения: неизвестно</p>
+                {% endif %}
+            </div>
+        </div>
+
+        <p>Книги автора:</p>
+        <div class="authors-books">
+            {% for book in books %}
+                {% include "parts/item-card.html" with book=book %}
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>

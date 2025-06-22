@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
+    <title>FableShelf</title>
+</head>
+<body>
+    <div class="content">
+        {% include "parts/menu.html" %}
+
+        <div class="cart">
+            {% if not items %}
+                <p>Похоже, вы ещё ничего не выбрали</p>
+            {% else %}
+                <table>
+                    <tr>
+                        <td>Позиция</td>
+                        <td>Товар</td>
+                        <td>Цена</td>
+                        <td>Удалить</td>
+                        <td>Оплатить</td>
+                    </tr>
+                    {% for item in items %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            <td>{{ item.item.title }}</td>
+                            <td>{{ item.item.total_price }} руб.</td>
+                            <td>
+                                <a href="{% url 'catalogue_module:remove_from_cart' item.id item.item.id %}">
+                                    <p>Удалить</p>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{% url 'catalogue_module:confirm_payment' item.id %}">
+                                    <p>Купить</p>
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    <tr>
+                        <td>{{ items|length|add:"1" }}</td>
+                        <td>Вся корзина</td>
+                        <td>{{ total_price }} руб</td>
+                        <td>
+                            <a href="{% url 'catalogue_module:clear_cart' %}">
+                                <p>Удалить всё</p>
+                            </a>
+                        </td>
+                        <td>
+                            <a href="{% url 'catalogue_module:confirm_all' %}">
+                                <p>Купить всё</p>
+                            </a>
+                        </td>
+                    </tr>
+                </table>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

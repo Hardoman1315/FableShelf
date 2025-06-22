@@ -1,11 +1,56 @@
 <!DOCTYPE html>
 {% load static %}
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/style.css' %}">
     <title>FableShelf</title>
 </head>
 <body>
-    <h1>Profile</h1>
+    <div class="content">
+        {% include "parts/menu.html" %}
+
+        <div class="profile">
+            <div class="user-data">
+                <p>Просмотр и изменение данных</p>
+                <form action="#" method="post" autocomplete="off">
+                    <label for="user-name">ФИО</label>
+                    <input type="text" value="{{ user.name }}" id="user-name" name="user-name" required>
+                    <label for="user-email">Логин (email)</label>
+                    <input type="email" value="{{ user.email }}" id="user-email" name="user-email" required>
+                    <label for="user-phone">Телефон (опциональный)</label>
+                    <input type="tel" value="{% if not phone %} Похоже вы ещё не добавили свой телефон {% else %}{{ user.phone }}{% endif %}" id="user-phone" name="user-phone">
+                    <label for="passwd">Подтвердите пароль</label>
+                    <input type="password" id="passwd" name="passwd" required>
+                    <input type="submit" value="Изменить">
+                </form>
+                <a href="{% url 'auth_module:logout' %}" class="btn">
+                    <p>Выход</p>
+                </a>
+            </div>
+            <div class="order-history">
+                <p>История заказов</p>
+                <table>
+                    {% if not history %}
+                        <p>Похоже вы ещё ничего не купили</p>
+                    {% else %}
+                        <tr>
+                            <td>Дата</td>
+                            <td>Товар</td>
+                            <td>Цена</td>
+                        </tr>
+                        {% for entry in history %}
+                            <tr>
+                                <td>{{ entry.add_date|date:"d.m.Y" }}</td>
+                                <td>{{ entry.item.title }}</td>
+                                <td>{{ entry.item.price }} руб</td>
+                            </tr>
+                        {% endfor %}
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
